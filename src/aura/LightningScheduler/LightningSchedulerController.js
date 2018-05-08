@@ -6,15 +6,35 @@
             helper.objectMethod(component,event);
             helper.hidePanelOnLoad(component,event);
         }
-	},
+    },
 	dispFilter : function(component, event, helper) {
         var selectedObj = component.get("v.selectedObj");
-        if(selectedObj != ''){
-            helper.showPanel(component,event);
-            helper.fetchFields(component, event);
-            helper.getActions(component, event);
-        }else{
-            helper.hidePanelOnLoad(component,event);
+        var index = component.get("v.wizardActiveStageIndex");
+        //component.set("v.wizardActiveStageIndex",index+1);
+        var wizard = component.find( 'wizard' );
+        var currentStageIndex = wizard.get( 'v.activeChevron' );
+        var button = event.getSource();
+        var buttonLabel = button.get( 'v.label' );
+
+        if ( buttonLabel == 'Previous' ) {
+
+            wizard.moveToStage( currentStageIndex - 1 );
+
+        } else if ( buttonLabel == 'Next' ) {
+            if(index == 0){
+                if(selectedObj != ''){
+                    wizard.moveToStage( currentStageIndex + 1 );
+                    wizard.advanceProgress();
+                    helper.showPanel(component,event);
+                    helper.fetchFields(component, event);
+                    helper.getActions(component, event);
+                }else{
+                    helper.hidePanelOnLoad(component,event);
+                }
+            }else{
+                wizard.moveToStage( currentStageIndex + 1 );
+                wizard.advanceProgress();
+            }
         }
     },
     getValues : function(component, event, helper) {
