@@ -17,6 +17,19 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>AddFilters</members>
+        <members>LightningAction</members>
+        <members>LightningFilterComponent</members>
+        <members>LightningLookupModal</members>
+        <members>LightningScheduler</members>
+        <members>LightningTab</members>
+        <members>LightningWrapper</members>
+        <members>strike_evt</members>
+        <members>strike_wizard</members>
+        <members>svgIcon</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
         <members>Scheduler_Action__c</members>
         <members>Scheduler__c</members>
         <name>CustomObject</name>
